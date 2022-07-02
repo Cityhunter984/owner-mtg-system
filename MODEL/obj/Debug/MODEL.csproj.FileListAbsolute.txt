@@ -1,0 +1,10 @@
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\bin\Debug\MODEL.dll
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\bin\Debug\MODEL.pdb
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\obj\Debug\MODEL.csprojResolveAssemblyReference.cache
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\obj\Debug\MODEL.dll
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\obj\Debug\MODEL.pdb
+F:\P2S Tech\MyBetSystem\Source code\v1.3\MyBetProject\MODEL\bin\Debug\MODEL.dll
+F:\P2S Tech\MyBetSystem\Source code\v1.3\MyBetProject\MODEL\bin\Debug\MODEL.pdb
+F:\P2S Tech\MyBetSystem\Source code\v1.3\MyBetProject\MODEL\obj\Debug\MODEL.csprojResolveAssemblyReference.cache
+F:\P2S Tech\MyBetSystem\Source code\v1.3\MyBetProject\MODEL\obj\Debug\MODEL.dll
+F:\P2S Tech\MyBetSystem\Source code\v1.3\MyBetProject\MODEL\obj\Debug\MODEL.pdb

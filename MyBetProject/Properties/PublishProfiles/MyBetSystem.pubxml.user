@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\MyBetSystem\Public code\20200926</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/15/2020 17:57:39</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/15/2020 17:57:38</publishTime>
+    </File>
+    <File Include="bin/MODEL.dll">
+      <publishTime>09/26/2020 15:15:19</publishTime>
+    </File>
+    <File Include="bin/MyBetProject.dll">
+      <publishTime>09/26/2020 15:15:20</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/15/2020 17:57:39</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/15/2020 17:57:38</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/15/2020 17:57:37</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/15/2020 17:57:39</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>09/24/2020 13:58:52</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/15/2020 17:57:40</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/15/2020 17:57:25</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/15/2020 17:57:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>01/15/2020 17:57:26</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>01/15/2020 17:57:26</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>01/15/2020 17:57:26</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>01/15/2020 17:57:38</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>01/15/2020 17:57:40</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>01/15/2020 17:57:40</publishTime>
+    </File>
+    <File Include="Scripts/waitingDialog.js">
+      <publishTime>03/23/2020 13:34:37</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>03/23/2020 13:34:38</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="Views/Home/FIEContMgm.cshtml">
+      <publishTime>09/26/2020 14:54:21</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/06/2020 13:42:18</publishTime>
+    </File>
+    <File Include="Views/Home/Payment.cshtml">
+      <publishTime>05/28/2020 14:54:56</publishTime>
+    </File>
+    <File Include="Views/Home/User.cshtml">
+      <publishTime>04/06/2020 13:52:06</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>09/24/2020 13:57:21</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="Views/Shared/LoginLayout.cshtml">
+      <publishTime>03/23/2020 14:17:11</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>05/28/2020 14:44:19</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/15/2020 17:57:10</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/26/2020 15:15:24</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

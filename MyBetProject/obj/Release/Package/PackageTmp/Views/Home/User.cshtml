@@ -1,0 +1,207 @@
+﻿@using MODEL;
+@using MyBetProject.Models.Form;
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<UserPositionForm> getAllPosition = ViewData[CONSTANT.getAllPosition] != null ? (List<UserPositionForm>)ViewData[CONSTANT.getAllPosition] : new List<UserPositionForm>();
+    
+}
+
+<div class="row">
+    <div style="width: 100%; display: inline-block; margin-top: 15px;">
+        <div style="width: 100%; display: inline-block; margin-top: 10px;">
+            <div style="width: 50%; display: inline-block; float: left;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>UserID: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="text" class="form-control" id="userID" maxlength="10" />
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: inline-block; float: right;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Username: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="text" class="form-control" id="username" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; display: inline-block; margin-top: 10px;">
+            <div style="width: 50%; display: inline-block; float: left;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Password: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="password" class="form-control" id="password" />
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: inline-block; float: right;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Position: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <select class="form-control" style="width: 50%;" id="userPosition">
+                            @foreach (UserPositionForm u in getAllPosition)
+                            {
+                                <option value="@u.ID">@u.Pos</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="ID" />
+    <div style="width: 100%; display: inline-block; margin-top: 10px; text-align: center;">
+        <input type="button" class="btn btn-primary"  value="Save" id="btnSaveNew" style="width: 20%;" onclick="getSaveNewUser()" />
+    </div>
+    <hr />
+
+    <div style="width: 100%; display: inline-block; margin-bottom: 10px; text-align: center;">
+        <input type="button" class="btn btn-primary" value="Get all User" style="width: 20%;" onclick="getAllUser()" />
+    </div>
+
+    @*Table Display*@
+    <div style="width: 100%; display: inline-block; margin-top: 10px;">
+        <table id="customers" class="table">
+            <tr>
+                <th>No</th>
+                <th>UserID</th>
+                <th>Username</th>
+                <th>Position</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    function getAllUser() {
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getAllUser", "Home")',
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                if (result == 0) {
+                    window.location.href = '@Url.Action("Index", "Login")';
+                }
+
+                //clear all rows in table except first row
+                $("#customers").find("tr:gt(0)").remove();
+
+                var str;
+                for (var i = 0; i < result.length; i++) {
+                    str = "<tr>";
+                    str += "<td>" + (i + 1) + "</td>";
+                    str += "<td>" + result[i].UserID + "</td>";
+                    str += "<td>" + result[i].UserName + "</td>";
+                    str += "<td>" + result[i].Position + "</td>";
+                    str += "<td><a style='cursor: pointer; color: red;' onclick='getDeleteUser(" + result[i].ID + ")'>Delete</a></td>";
+                    str += "</tr>";
+
+                    $('#customers tr:last').after(str);
+                }
+
+                $("#btnSaveNew").attr("disabled", false);
+                $("#btnUpdate").attr("disabled", true);
+            }
+        })
+    }
+
+    function getDeleteUser(param) {
+        if (confirm("Do you really want to delete this User?")) {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getDeleteUser", "Home")',
+                data: { userID: param },
+                beforeSend: function () {
+                    waitingDialog.show();
+                },
+                success: function (data) {
+                    var result = data.result;
+
+                    if (result == 0) {
+                        window.location.href = '@Url.Action("Index", "Login")';
+                    }
+
+                    if (result) {
+                        getAllUser();
+                    }
+
+                }
+            })
+        }
+    }
+
+    function getSaveNewUser() {
+        var userID = $('#userID').val();
+        var username = $('#username').val();
+        var userPosition = $('#userPosition').val();
+        var password = $('#password').val();
+
+        if (userID == null || userID == "") {
+            alert("UserID is empty!");
+            $('#userID').focus();
+            return false;
+        }
+        if (username == null || username == "") {
+            alert("Username is empty!");
+            $('#username').focus();
+            return false;
+        }
+        if (password == null || password == "") {
+            alert("Password is empty");
+            $('#password').focus();
+            return false;
+        }
+
+        var fileData = new FormData();
+        fileData.append("UserID", userID);
+        fileData.append("UserName", username);
+        fileData.append("Pass", password);
+        fileData.append("PositionID", userPosition);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getAddNewUser", "Home")',
+            data: fileData,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                var result = data.result;
+
+                if (result == 0) {
+                    window.location.href = '@Url.Action("Index", "Login")';
+                }
+
+                if (result) {
+                    getAllUser();
+                }
+                else {
+                    alert("UserID is already exist!!!\nPlease try again...");
+                    waitingDialog.hide();
+                    return false;
+                }
+            }
+        })
+
+        return true;
+    }
+</script>

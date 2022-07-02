@@ -1,0 +1,761 @@
+﻿@using MODEL;
+@using MyBetProject.Models.Form;
+@{
+    ViewBag.Title = "FIEContMgm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<DeliveryStatusForm> lstGetAllDelStatus = ViewData[CONSTANT.listGetAllDeliveryStatus] != null ? (List<DeliveryStatusForm>)ViewData[CONSTANT.listGetAllDeliveryStatus] : new List<DeliveryStatusForm>();
+}
+
+<style>
+    .modal-row{
+        width: 100%;
+        display: inline-block;
+    }
+
+    .modal-row-col-label{
+        width: 30%;
+        float: left;
+        margin: 7px 0px 0px 15px;
+    }
+
+    .modal-row-col-input{
+        margin-bottom: 12px;
+        width: 60%;
+        float: right;
+    }
+
+    .modal-row-left{
+        width: 50%;
+        float: left;
+    }
+
+    .modal-row-right{
+        width: 50%;
+        float: left;
+    }
+</style>
+
+<div class="row">
+    <div style="width: 100%; display: inline-block; margin-top: 15px;">
+        <div style="width: 100%; display: inline-block; margin-top: 10px;">
+            <div style="width: 50%; display: inline-block; float: left;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Arrive Place: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="text" class="form-control" id="ArrivePlace" />
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: inline-block; float: right;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Arrive Date: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="date" class="form-control" id="ArriveDate" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; display: inline-block; margin-top: 10px;">
+            <div style="width: 50%; display: inline-block; float: left;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>VN Truck: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="text" class="form-control" id="VNTruck" />
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: inline-block; float: right;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Cont. No: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="text" class="form-control" id="ContNo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; display: inline-block; margin-top: 10px;">
+            <div style="width: 50%; display: inline-block; float: left;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Cont. Size: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <input type="number" class="form-control" id="ContSize" />
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: inline-block; float: right;">
+                <div style="width: 100%; display: inline-block;">
+                    <div style="width: 20%; float: left;">
+                        <label>Packing List: </label>
+                    </div>
+                    <div style="width: 80%; float: right;">
+                        <select id="PKL" style="width: 15%;" class="form-control">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%; display: inline-block; margin-top: 10px;">
+        <div style="width: 50%; display: inline-block; float: left;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Cont. Owner: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <input type="text" class="form-control" id="ContOwner" />
+                </div>
+            </div>
+        </div>
+        <div style="width: 50%; display: inline-block; float: right;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Goods Type: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <input type="text" class="form-control" id="GoodsType" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%; display: inline-block; margin-top: 10px;">
+        <div style="width: 50%; display: inline-block; float: left;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Delivery Date: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <input type="date" class="form-control" id="DeliveryDate" />
+                </div>
+            </div>
+        </div>
+        <div style="width: 50%; display: inline-block; float: right;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Delivery Place: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <input type="text" class="form-control" id="DeliveryPlace" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%; display: inline-block; margin-top: 10px;">
+        <div style="width: 50%; display: inline-block; float: left;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Third Party: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <input type="text" class="form-control" id="ThridParty" />
+                </div>
+            </div>
+        </div>
+        <div style="width: 50%; display: inline-block; float: right;">
+            <div style="width: 100%; display: inline-block;">
+                <div style="width: 20%; float: left;">
+                    <label>Delivery Status: </label>
+                </div>
+                <div style="width: 80%; float: right;">
+                    <select id="DeliveryStatus" style="width: 25%;" class="form-control">
+                        @foreach (DeliveryStatusForm d in lstGetAllDelStatus)
+                        {
+                            <option value="@d.ID">@d.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="contID" />
+    </div>
+    <div style="width: 100%; display: inline-block; margin-top: 10px; text-align: center;">
+        <input type="button" class="btn btn-primary" value="Save" id="btnSaveNew" style="width: 20%;" onclick="getSaveContainerData()" />
+        <input type="button" class="btn btn-primary" value="Update" id="btnUpdate" style="width: 20%;" onclick="getUpdateData()" disabled />
+    </div>
+    @*<hr />
+    <div style="width: 100%; display: inline-block;">
+        <div style="width: 20%; float: left; display: inline-block;">
+            <select id="searchDateType" style="width: 50%;" class="form-control">
+                <option value="1">Day</option>
+                <option value="2">Week</option>
+                <option value="3">Month</option>
+                <option value="4">Year</option>
+            </select>
+        </div>
+        <div style="width: 40%; display: inline-block;">
+            <div style="width: 50%; float: left; display: inline-block;">
+                <input type="date" class="form-control" id="searchDate" style="width: 90%;" />
+            </div>
+            <div style="width: 50%; float: right; display: inline-block;">
+                <input type="button" class="btn btn-primary" value="Search" style="width: 70%;" onclick="getSearchContInfo()" />
+            </div>
+        </div>
+        <div id="TotalContainer" style="width: 20%; float: right; text-align: right;">
+            <span></span>
+        </div>
+    </div>*@
+
+    <hr />
+
+    <div class="container">
+        <div class="col-xs-3">
+            <select id="searchDateType" class="form-control">
+                <option value="1">Day</option>
+                <option value="2">Week</option>
+                <option value="3">Month</option>
+                <option value="4">Year</option>
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <input type="date" class="form-control" id="searchDate" />
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" id="searchTypeID">
+                <option value="0">----All Type----</option>
+                <option value="1">Container</option>
+                <option value="2">Owner</option>
+                <option value="3">Thrid Party</option>
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" id="searchDataId" placeholder="search data..." />
+        </div>
+    </div>
+
+    <hr />
+    <div class="container" style="text-align: center">
+        <input type="button" class="btn btn-primary" value="Search" onclick="getSearchContInfo()" style="width: 70%;" />
+        <div id="TotalContainer" style="margin-top: 10px;">
+            <span></span>
+        </div>
+        @*<a href="javascript:void(0)" onclick="exportToExcel()">Export to Excel</a>*@
+    </div>
+
+    @*Table Display*@
+    <div style="width: 100%; display: inline-block; margin-top: 10px;">
+        <table id="customers" class="table">
+            <tr>
+                <th>No</th>
+                <th>Arr Place</th>
+                <th>Arr Date</th>
+                <th>VN Truck</th>
+                <th>Cont. No</th>
+                <th>Size</th>
+                <th>PKL</th>
+                <th>Owner</th>
+                <th>Goods</th>
+                <th>Deliv Date</th>
+                <th>Deliv Place</th>
+                <th>3rd Party</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Container Info</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+            </div>
+            <div class="modal-body">
+                <div class="modal-row">
+                    <div class="modal-row-left">
+                        <div class="modal-row-col-label"><label>Cont no: </label></div>
+                        <div class="modal-row-col-input"><input type="text" class="form-control" id="modalContNoId" /></div>
+                    </div>
+                    <div class="modal-row-right">
+                        <div class="modal-row-col-label"><label>VN truck: </label></div>
+                        <div class="modal-row-col-input"><input type="text" class="form-control" id="modalVNTruckId" /></div>
+                    </div>
+                </div>
+                <div class="modal-row">
+                    <div class="modal-row-left"></div>
+                        <div class="modal-row-col-label"><label>Cont. owner: </label></div>
+                        <div class="modal-row-col-input"><input type="text" class="form-control" id="modalContOwnerId" /></div>
+                    </div>
+                    <div class="modal-row-right">
+                        <div class="modal-row-col-label"><label>Goods: </label></div>
+                        <div class="modal-row-col-input"><input type="text" class="form-control" id="modalGoodsId" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function getSaveContainerData() {
+        var ArrivePlace = $('#ArrivePlace').val();
+        var ArriveDate = $('#ArriveDate').val();
+        var VNTruck = $('#VNTruck').val();
+        var ContNo = $('#ContNo').val();
+        var ContSize = $('#ContSize').val();
+        var PKL = $('#PKL').val();
+        var ContOwner = $('#ContOwner').val();
+        var GoodsType = $('#GoodsType').val();
+        var DeliveryDate = $('#DeliveryDate').val();
+        var DeliveryPlace = $('#DeliveryPlace').val();
+        var ThridParty = $('#ThridParty').val();
+        var DeliveryStatus = $('#DeliveryStatus').val();
+
+        if (ArrivePlace == null || ArrivePlace == "") {
+            alert("Arrive place is empty!!!");
+            $('#ArrivePlace').focus();
+            return false;
+        }
+        if (ArriveDate == null || ArriveDate == "") {
+            alert("Arrive date is empty!!!");
+            $('#ArriveDate').focus();
+            return false;
+        }
+        if (VNTruck == null || VNTruck == "") {
+            alert("VN truck is empty!!!");
+            $('#VNTruck').focus();
+            return false;
+        }
+        if (ContNo == null || ContNo == "") {
+            alert("Container No. is empty!!!");
+            $('#ContNo').focus();
+            return false;
+        }
+        if (ContSize <= 0) {
+            alert("Container size is not available!!!");
+            $('#ContSize').focus();
+            return false;
+        }
+        if (GoodsType == null || GoodsType == "") {
+            alert("Goods type is empty!!!");
+            $('#GoodsType').focus();
+            return false;
+        }
+
+        var fileData = new FormData();
+        fileData.append("ArrivePlace", ArrivePlace);
+        fileData.append("ArriveDate", ArriveDate);
+        fileData.append("VNTruck", VNTruck);
+        fileData.append("ContNo", ContNo);
+        fileData.append("ContSize", ContSize);
+        fileData.append("PKLStr", PKL);
+        fileData.append("ContOwner", ContOwner);
+        fileData.append("GoodsType", GoodsType);
+        fileData.append("DeliveryDate", DeliveryDate);
+        fileData.append("DeliveryPlace", DeliveryPlace);
+        fileData.append("DeliveryStatus", DeliveryStatus);
+        fileData.append("ThridParty", ThridParty);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("AddContInfo", "Home")',
+            data: fileData,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                if (result == 0) {
+                    window.location.href = '@Url.Action("Index", "Login")';
+                }
+
+                alert("Add data successfull!!!")
+
+                var text = "Total Container: " + result.length;
+                $("#TotalContainer span").text(text);
+
+                //clear all rows in table except first row
+                $("#customers").find("tr:gt(0)").remove();
+
+                var str;
+                for (var i = 0; i < result.length; i++) {
+                    str = "<tr>";
+                    str += "<td>" + (i + 1) + "</td>";
+                    str += "<td>" + result[i].ArrivePlace + "</td>";
+                    str += "<td>" + result[i].ArriveDateStr + "</td>";
+                    str += "<td>" + result[i].VNTruck + "</td>";
+                    str += "<td>" + result[i].ContNo + "</td>";
+                    str += "<td>" + result[i].ContSize + " ft</td>";
+                    str += "<td>" + result[i].PKLStr + "</td>";
+                    str += "<td>" + result[i].ContOwner + "</td>";
+                    str += "<td>" + result[i].GoodsType + "</td>";
+                    str += "<td>" + result[i].DeliveryDateStr + "</td>";
+                    str += "<td>" + result[i].DeliveryPlace + "</td>";
+                    str += "<td>" + result[i].ThridParty + "</td>";
+                    str += "<td style='color: " + result[i].color + ";'>" + result[i].DeliveryStatusName + "</td>";
+                    str += "</tr>";
+
+                    $('#customers tr:last').after(str);
+                }
+            }
+        })
+    }
+
+    function getSearchContInfo() {
+        var dateType = $('#searchDateType').val();
+        var dateSearch = $('#searchDate').val();
+        var searchType = $("#searchTypeID").val();
+        var searchData = $('#searchDataId').val();
+
+
+        if (dateSearch == null || dateSearch == "") {
+            alert("Date search is empty!!!");
+            return false;
+        }
+
+        if (searchType != 0) {
+            if (searchData == null || searchData == "") {
+                alert("Search data is empty!!!");
+                return false;
+            }
+        }
+
+        var fileData = new FormData();
+        fileData.append("dateType", dateType);
+        fileData.append("searchDate", dateSearch);
+        fileData.append("searchType", searchType);
+        fileData.append("searchData", searchData);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getSearchByDate", "Home")',
+            data: fileData,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                var text = "Total Container: " + result.length;
+                $("#TotalContainer span").text(text);
+
+                //clear all rows in table except first row
+                $("#customers").find("tr:gt(0)").remove();
+
+                if (result == 0) {
+
+                    var str;
+
+                    str = "<tr>";
+                    str += "<td>No Data</td>";
+                    str += "</tr>";
+
+                    $('#customers tr:last').after(str);
+
+                    $("#btnSaveNew").attr("disabled", false);
+                    $("#btnUpdate").attr("disabled", true);
+                    
+
+                } else {
+                    var str;
+                    for (var i = 0; i < result.length; i++) {
+                        str = "<tr>";
+                        str += "<td>" + (i + 1) + "</td>";
+                        str += "<td>" + result[i].ArrivePlace + "</td>";
+                        str += "<td>" + result[i].ArriveDateStr + "</td>";
+                        str += "<td>" + result[i].VNTruck + "</td>";
+                        str += "<td><a style='cursor: pointer;' onclick='showUpdateModal(" + result[i].ID + ")' data-toggle='modal' data-target='#exampleModal'>" + result[i].ContNo + "</a></td>";
+                        str += "<td>" + result[i].ContSize + " ft</td>";
+                        str += "<td>" + result[i].PKLStr + "</td>";
+                        str += "<td>" + result[i].ContOwner + "</td>";
+                        str += "<td>" + result[i].GoodsType + "</td>";
+                        str += "<td>" + result[i].DeliveryDateStr + "</td>";
+                        str += "<td>" + result[i].DeliveryPlace + "</td>";
+                        str += "<td>" + result[i].ThridParty + "</td>";
+                        str += "<td style='color: " + result[i].color + ";'>" + result[i].DeliveryStatusName + "</td>";
+                        str += "</tr>";
+
+                        $('#customers tr:last').after(str);
+                    }
+
+                    $("#btnSaveNew").attr("disabled", false);
+                    $("#btnUpdate").attr("disabled", true);
+                }
+            }
+        })
+    }
+
+    function showUpdateModal(param) {
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getContInfoByID", "Home")',
+            data: { ID: param },
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                if (result == 0) {
+                    window.location.href = '@Url.Action("Index", "Login")';
+                }
+
+                //$('#contID').val(result.ID);
+                //$('#ArrivePlace').val(result.ArrivePlace);
+                //$('#ArriveDate').val(result.ArriveDateStr);
+                //$('#VNTruck').val(result.VNTruck);
+                //$('#ContNo').val(result.ContNo);
+                //$('#ContSize').val(result.ContSize);
+                //$('#PKL').val(result.PKLStr);
+                //$('#ContOwner').val(result.ContOwner);
+                //$('#GoodsType').val(result.GoodsType);
+                //$('#DeliveryDate').val(result.DeliveryDateStr);
+                //$('#DeliveryPlace').val(result.DeliveryPlace);
+                //$('#ThridParty').val(result.ThridParty);
+                //$('#DeliveryStatus').val(result.DeliveryStatus);
+
+                //$("#btnSaveNew").attr("disabled", true);
+                //$("#btnUpdate").attr("disabled", false);
+
+                $('#modalContNoId').val(result.ContNo);
+                $('#modalVNTruckId').val(result.VNTruck);
+                $('#modalContOwnerId').val(result.ContOwner);
+                $('#modalGoodsId').val(result.GoodsType);
+            }
+        })
+    }
+
+    function getUpdateData(){
+        var ArrivePlace = $('#ArrivePlace').val();
+        var ArriveDate = $('#ArriveDate').val();
+        var VNTruck = $('#VNTruck').val();
+        var ContNo = $('#ContNo').val();
+        var ContSize = $('#ContSize').val();
+        var PKL = $('#PKL').val();
+        var ContOwner = $('#ContOwner').val();
+        var GoodsType = $('#GoodsType').val();
+        var DeliveryDate = $('#DeliveryDate').val();
+        var DeliveryPlace = $('#DeliveryPlace').val();
+        var ThridParty = $('#ThridParty').val();
+        var DeliveryStatus = $('#DeliveryStatus').val();
+
+        var searchType = $("#searchTypeID").val();
+        var searchData = $('#searchDataId').val();
+
+        if (ArrivePlace == null || ArrivePlace == "") {
+            alert("Arrive place is empty!!!");
+            $('#ArrivePlace').focus();
+            return false;
+        }
+        if (ArriveDate == null || ArriveDate == "") {
+            alert("Arrive date is empty!!!");
+            $('#ArriveDate').focus();
+            return false;
+        }
+        if (VNTruck == null || VNTruck == "") {
+            alert("VN truck is empty!!!");
+            $('#VNTruck').focus();
+            return false;
+        }
+        if (ContNo == null || ContNo == "") {
+            alert("Container No. is empty!!!");
+            $('#ContNo').focus();
+            return false;
+        }
+        if (ContSize <= 0) {
+            alert("Container size is not available!!!");
+            $('#ContSize').focus();
+            return false;
+        }
+        if (GoodsType == null || GoodsType == "") {
+            alert("Goods type is empty!!!");
+            $('#GoodsType').focus();
+            return false;
+        }
+
+        if (searchType != 0) {
+            if (searchData == null || searchData == "") {
+                alert("Search data is empty!!!");
+                return false;
+            }
+        }
+
+        var fileData = new FormData();
+        fileData.append("ArrivePlace", ArrivePlace);
+        fileData.append("ArriveDate", ArriveDate);
+        fileData.append("VNTruck", VNTruck);
+        fileData.append("ContNo", ContNo);
+        fileData.append("ContSize", ContSize);
+        fileData.append("PKLStr", PKL);
+        fileData.append("ContOwner", ContOwner);
+        fileData.append("GoodsType", GoodsType);
+        fileData.append("DeliveryDate", DeliveryDate);
+        fileData.append("DeliveryPlace", DeliveryPlace);
+        fileData.append("DeliveryStatus", DeliveryStatus);
+        fileData.append("ThridParty", ThridParty);
+
+        var searchDateType = $('#searchDateType').val();
+        var searchDate = $('#searchDate').val();
+        var ID = $('#contID').val();
+
+        fileData.append("dateType", searchDateType);
+        fileData.append("searchDate", searchDate);
+        fileData.append("searchType", searchType);
+        fileData.append("searchData", searchData);
+        fileData.append("ID", ID);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("updateContInfo", "Home")',
+            data: fileData,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                if (result == 0) {
+                    window.location.href = '@Url.Action("Index", "Login")';
+                }
+
+                alert("Update info successfull.")
+
+                var text = "Total Container: " + result.length;
+                $("#TotalContainer span").text(text);
+
+                //clear all rows in table except first row
+                $("#customers").find("tr:gt(0)").remove();
+
+                var str;
+                for (var i = 0; i < result.length; i++) {
+                    str = "<tr>";
+                    str += "<td>" + (i + 1) + "</td>";
+                    str += "<td>" + result[i].ArrivePlace + "</td>";
+                    str += "<td>" + result[i].ArriveDateStr + "</td>";
+                    str += "<td>" + result[i].VNTruck + "</td>";
+                    str += "<td><a style='cursor: pointer;' onclick='showUpdateModal(" + result[i].ID + ")'>" + result[i].ContNo + "</a></td>";
+                    str += "<td>" + result[i].ContSize + " ft</td>";
+                    str += "<td>" + result[i].PKLStr + "</td>";
+                    str += "<td>" + result[i].ContOwner + "</td>";
+                    str += "<td>" + result[i].GoodsType + "</td>";
+                    str += "<td>" + result[i].DeliveryDateStr + "</td>";
+                    str += "<td>" + result[i].DeliveryPlace + "</td>";
+                    str += "<td>" + result[i].ThridParty + "</td>";
+                    str += "<td style='color: " + result[i].color + ";'>" + result[i].DeliveryStatusName + "</td>";
+                    str += "</tr>";
+
+                    $('#customers tr:last').after(str);
+                }
+            }
+        })
+    }
+
+    function exportToExcel() {
+        var dateType = $('#searchDateType').val();
+        var dateSearch = $('#searchDate').val();
+        var searchType = $("#searchTypeID").val();
+        var searchData = $('#searchDataId').val();
+
+
+        if (dateSearch == null || dateSearch == "") {
+            alert("Date search is empty!!!");
+            return false;
+        }
+
+        if (searchType != 0) {
+            if (searchData == null || searchData == "") {
+                alert("Search data is empty!!!");
+                return false;
+            }
+        }
+
+        var fileData = new FormData();
+        fileData.append("dateType", dateType);
+        fileData.append("searchDate", dateSearch);
+        fileData.append("searchType", searchType);
+        fileData.append("searchData", searchData);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getExportToExcel", "Home")',
+            data: fileData,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                waitingDialog.hide();
+                var result = data.result;
+
+                var text = "Total Container: " + result.length;
+                $("#TotalContainer span").text(text);
+
+                //clear all rows in table except first row
+                $("#customers").find("tr:gt(0)").remove();
+
+                if (result == 0) {
+
+                    var str;
+
+                    str = "<tr>";
+                    str += "<td>No Data</td>";
+                    str += "</tr>";
+
+                    $('#customers tr:last').after(str);
+
+                    $("#btnSaveNew").attr("disabled", false);
+                    $("#btnUpdate").attr("disabled", true);
+
+
+                } else {
+                    var str;
+                    for (var i = 0; i < result.length; i++) {
+                        str = "<tr>";
+                        str += "<td>" + (i + 1) + "</td>";
+                        str += "<td>" + result[i].ArrivePlace + "</td>";
+                        str += "<td>" + result[i].ArriveDateStr + "</td>";
+                        str += "<td>" + result[i].VNTruck + "</td>";
+                        str += "<td><a style='cursor: pointer;' onclick='showUpdateModal(" + result[i].ID + ")'>" + result[i].ContNo + "</a></td>";
+                        str += "<td>" + result[i].ContSize + " ft</td>";
+                        str += "<td>" + result[i].PKLStr + "</td>";
+                        str += "<td>" + result[i].ContOwner + "</td>";
+                        str += "<td>" + result[i].GoodsType + "</td>";
+                        str += "<td>" + result[i].DeliveryDateStr + "</td>";
+                        str += "<td>" + result[i].DeliveryPlace + "</td>";
+                        str += "<td>" + result[i].ThridParty + "</td>";
+                        str += "<td style='color: " + result[i].color + ";'>" + result[i].DeliveryStatusName + "</td>";
+                        str += "</tr>";
+
+                        $('#customers tr:last').after(str);
+                    }
+
+                    $("#btnSaveNew").attr("disabled", false);
+                    $("#btnUpdate").attr("disabled", true);
+                }
+            }
+        })
+    }
+</script>
+

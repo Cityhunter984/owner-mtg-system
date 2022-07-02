@@ -1,0 +1,5 @@
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\bin\Release\MODEL.dll
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\bin\Release\MODEL.pdb
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\obj\Release\MODEL.dll
+c:\users\dell\documents\visual studio 2013\Projects\MyBetProject\MODEL\obj\Release\MODEL.pdb
+C:\Users\DELL\Documents\Visual Studio 2013\Projects\MyBetProject\MODEL\obj\Release\MODEL.csprojResolveAssemblyReference.cache

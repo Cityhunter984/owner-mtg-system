@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+<div class="my-content">
+    <div class="my-login-content">
+        <input type="text" class="form-control" id="usernameId" onkeypress="return AddKeyPress(event);" placeholder="Username" />
+        <input type="password" class="form-control" id="passwordId" onkeypress="return AddKeyPress(event);" placeholder="Password" />
+        <input type="button" value="Login" class="btn btn-primary" onclick="getLogin()" />
+    </div>
+</div>
+
+<script>
+
+    function AddKeyPress(e) {
+        // look for window.event in case event isn't passed in
+        e = e || window.event;
+        if (e.keyCode == 13) {
+            //document.getElementById('btnEmail').click();
+            getLogin();
+            return false;
+        }
+        return true;
+    }
+
+    function getLogin() {
+        var username = $('#usernameId').val();
+        var password = $('#passwordId').val();
+
+        if (username == null || username == "") {
+            alert("Username is empty!!!");
+            $('#usernameId').focus();
+            return false;
+        }
+        if (password == null || password == "") {
+            alert("Password is empty!!!");
+            $('#passwordId').focus();
+            return false;
+        }
+
+        var dataFile = new FormData();
+        dataFile.append("UserName", username);
+        dataFile.append("Pass", password);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getLogin", "Login")',
+            data: dataFile,
+            beforeSend: function () {
+                waitingDialog.show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                
+                var result = data.result;
+
+                if (result) {
+                    window.location.href = '@Url.Action("FIEContMgm", "Home")';
+                    waitingDialog.hide();
+                }
+                else {
+                    alert("Username and Password is incorrect!\nPlease try again!!!");
+                    waitingDialog.hide();
+                    return false;
+                }
+            }
+        });
+        return true;
+    }
+</script>
